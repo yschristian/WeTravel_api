@@ -10,6 +10,9 @@ import dbConnect from "./src/database/dbConnect.js"
 import UserRoutes from "./src/Routes/user";
 import postRoutes from "./src/Routes/posts";
 import AuthRoutes from "./src/Routes/Auth";
+// import { users, posts } from "./src/data/index.js";
+// import User from "./src/Models/User.js";
+// import Post from "./src/Models/Post.js";
 
 
 const __filename = fileURLToPath(import.meta.url)
@@ -36,4 +39,6 @@ const port = process.env.PORT
 
 app.listen(port,()=>{
     console.log(`server is running at http://localhost:${port}`)
+    // User.insertMany(users);
+    // Post.insertMany(posts);
 })
