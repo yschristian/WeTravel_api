@@ -6,7 +6,11 @@ import path from "path";
 import dotenv from "dotenv"
 import { fileURLToPath } from "url";
 import helmet from "helmet";
-import dbConnect from "./src/database/dbConnect"
+import dbConnect from "./src/database/dbConnect.js"
+import UserRoutes from "./src/Routes/user";
+import postRoutes from "./src/Routes/posts";
+import AuthRoutes from "./src/Routes/Auth";
+
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -21,8 +25,14 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 app.use(cors())
 app.use("/assets",express.static(path.join(__dirname,"public/assets ")))
+app.use(UserRoutes)
+app.use(postRoutes)
+app.use(AuthRoutes)
 
 dbConnect()
+
+const port = process.env.PORT
+
 app.listen(port,()=>{
     console.log(`server is running at http://localhost:${port}`)
 })
